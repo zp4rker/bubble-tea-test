@@ -20,7 +20,7 @@ func Exit(product string, purchased bool) core.Screen {
 }
 
 func (scr *screen_exit) View() string {
-	s := "You "
+	s := "\nYou "
 	if scr.purchased {
 		s += fmt.Sprintf("purchased %v.\n", scr.product)
 	} else {

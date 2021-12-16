@@ -22,7 +22,7 @@ func ProdChoose() core.Screen {
 }
 
 func (scr *screen_prodchoose) View() string {
-	s := "What would you like to buy?\n\n"
+	s := "\nWhat would you like to buy?\n\n"
 
 	for i, choice := range scr.choices {
 		cursor := " "

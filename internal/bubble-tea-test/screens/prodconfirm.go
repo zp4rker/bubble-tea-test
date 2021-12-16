@@ -23,7 +23,7 @@ func ProdConfirm(product string) core.Screen {
 }
 
 func (scr *screen_prodconfirm) View() string {
-	s := fmt.Sprintf("You chose '%v'. Is that what you would like to order?\n\n", scr.product)
+	s := fmt.Sprintf("\nYou chose '%v'. Is that what you would like to order?\n\n", scr.product)
 
 	for i, choice := range scr.choices {
 		cursor := " "
