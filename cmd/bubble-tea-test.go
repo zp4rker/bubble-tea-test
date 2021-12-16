@@ -12,7 +12,7 @@ import (
 func main() {
 	mainmodel.MainModel.LoadScreen(screens.ProdChoose())
 
-	p := tea.NewProgram(mainmodel.MainModel)
+	p := tea.NewProgram(mainmodel.MainModel, tea.WithAltScreen())
 	if err := p.Start(); err != nil {
 		fmt.Printf("Encountered an error: %v", err)
 		os.Exit(1)
