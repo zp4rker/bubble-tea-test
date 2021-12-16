@@ -5,8 +5,8 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/zp4rker/bubbleteatest/internal/bubbleteatest/mainmodel"
-	"github.com/zp4rker/bubbleteatest/internal/bubbleteatest/screens"
+	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/mainmodel"
+	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/screens"
 )
 
 func main() {

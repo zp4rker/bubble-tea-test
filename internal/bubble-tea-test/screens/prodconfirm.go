@@ -4,25 +4,28 @@ import (
 	"fmt"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/zp4rker/bubbleteatest/internal/bubbleteatest/core"
-	"github.com/zp4rker/bubbleteatest/internal/bubbleteatest/mainmodel"
+	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/core"
+	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/mainmodel"
 )
 
-type screen_prodchoose struct {
+type screen_prodconfirm struct {
+	product string
+
 	choices  []string
 	cursor   int
 	selected int
 }
 
-func ProdChoose() core.Screen {
-	return &screen_prodchoose{
-		choices:  []string{"Carrots", "Cucumbers", "Apples", "Bananas"},
+func ProdConfirm(product string) core.Screen {
+	return &screen_prodconfirm{
+		product:  product,
+		choices:  []string{"Yes", "No"},
 		selected: -1,
 	}
 }
 
-func (scr *screen_prodchoose) View() string {
-	s := "What would you like to buy?\n\n"
+func (scr *screen_prodconfirm) View() string {
+	s := fmt.Sprintf("You chose '%v'. Is that what you would like to order?\n\n", scr.product)
 
 	for i, choice := range scr.choices {
 		cursor := " "
@@ -43,7 +46,7 @@ func (scr *screen_prodchoose) View() string {
 	return s
 }
 
-func (scr *screen_prodchoose) Update(msg tea.Msg) tea.Cmd {
+func (scr *screen_prodconfirm) Update(msg tea.Msg) tea.Cmd {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
@@ -68,8 +71,7 @@ func (scr *screen_prodchoose) Update(msg tea.Msg) tea.Cmd {
 
 		case "enter":
 			if scr.selected != -1 {
-				mainmodel.MainModel.LoadScreen(ProdConfirm(scr.choices[scr.selected]))
-				// mainmodel.MainModel.LoadModel(prodconfirm.CreateModel(m.choices[m.selected]))
+				mainmodel.MainModel.LoadScreen(Exit(scr.product, scr.choices[scr.selected] == "Yes"))
 			}
 		}
 	}

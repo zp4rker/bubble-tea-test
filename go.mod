@@ -1,4 +1,4 @@
-module github.com/zp4rker/bubbleteatest
+module github.com/zp4rker/bubble-tea-test
 
 go 1.17
 

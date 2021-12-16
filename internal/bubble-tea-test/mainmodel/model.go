@@ -2,7 +2,7 @@ package mainmodel
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/zp4rker/bubbleteatest/internal/bubbleteatest/core"
+	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/core"
 )
 
 type Model struct {

@@ -1,5 +1,5 @@
 //go:build run
 
-//go:generate go run ./cmd/bubbleteatest/bubble-tea-test.go
+//go:generate go run ./cmd/bubble-tea-test.go
 
 package build
