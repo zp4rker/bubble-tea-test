@@ -69,7 +69,6 @@ func (scr *screen_prodchoose) Update(msg tea.Msg) tea.Cmd {
 		case "enter":
 			if scr.selected != -1 {
 				mainmodel.MainModel.LoadScreen(ProdConfirm(scr.choices[scr.selected]))
-				// mainmodel.MainModel.LoadModel(prodconfirm.CreateModel(m.choices[m.selected]))
 			}
 		}
 	}
