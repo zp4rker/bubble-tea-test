@@ -11,16 +11,14 @@ import (
 type screen_prodconfirm struct {
 	product string
 
-	choices  []string
-	cursor   int
-	selected int
+	choices []string
+	cursor  int
 }
 
 func ProdConfirm(product string) core.Screen {
 	return &screen_prodconfirm{
-		product:  product,
-		choices:  []string{"Yes", "No"},
-		selected: -1,
+		product: product,
+		choices: []string{"Yes", "No"},
 	}
 }
 
@@ -33,12 +31,7 @@ func (scr *screen_prodconfirm) View() string {
 			cursor = ">"
 		}
 
-		checked := " "
-		if scr.selected == i {
-			checked = "*"
-		}
-
-		s += fmt.Sprintf("%s [%s] %s\n", cursor, checked, choice)
+		s += fmt.Sprintf("%s %s\n", cursor, choice)
 	}
 
 	s += "\nPress q to quit.\n"
@@ -64,15 +57,8 @@ func (scr *screen_prodconfirm) Update(msg tea.Msg) tea.Cmd {
 				scr.cursor++
 			}
 
-		case " ":
-			if scr.selected != scr.cursor {
-				scr.selected = scr.cursor
-			}
-
-		case "enter":
-			if scr.selected != -1 {
-				mainmodel.MainModel.LoadScreen(Exit(scr.product, scr.choices[scr.selected] == "Yes"))
-			}
+		case " ", "enter":
+			mainmodel.MainModel.LoadScreen(Exit(scr.product, scr.choices[scr.cursor] == "Yes"))
 		}
 	}
 
