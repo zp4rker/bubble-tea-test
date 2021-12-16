@@ -38,7 +38,9 @@ func (scr *screen_prodchoose) View() string {
 		s += fmt.Sprintf("%s [%s] %s\n", cursor, checked, choice)
 	}
 
-	s += "\nPress q to quit.\n"
+	s += "\nPress space to select.\n"
+	s += "Press enter to continue.\n"
+	s += "Press q to quit.\n"
 
 	return s
 }
