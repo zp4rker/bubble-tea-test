@@ -19,9 +19,9 @@ func ComingSoon(app string) core.Screen {
 }
 
 func (scr *screen_comingsoon) View() string {
-	s := fmt.Sprintf("\n%s is coming soon!\n\n", scr.app)
+	s := fmt.Sprintf("\n%s is coming soon!\n", scr.app)
 
-	s += "\nPress any key to quit.\n"
+	s += fmt.Sprintf("\n%v\n", core.PressTo("any key", "quit"))
 
 	return s
 }

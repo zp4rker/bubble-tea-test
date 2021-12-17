@@ -28,7 +28,7 @@ func (scr *screen_exit) View() string {
 		s += "did not purchase anything.\n"
 	}
 
-	s += "\nPress any key to quit.\n"
+	s += fmt.Sprintf("\n%v\n", core.PressTo("any key", "quit"))
 
 	return s
 }

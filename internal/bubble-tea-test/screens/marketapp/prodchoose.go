@@ -25,22 +25,31 @@ func (scr *screen_prodchoose) View() string {
 	s := "\nWhat would you like to buy?\n\n"
 
 	for i, choice := range scr.choices {
-		cursor := " "
-		if scr.cursor == i {
-			cursor = ">"
-		}
-
-		checked := " "
+		nextLine := ""
 		if scr.selected == i {
-			checked = "*"
+			nextLine += fmt.Sprintf("[*] %s", choice)
+		} else {
+			nextLine += fmt.Sprintf("[ ] %s", choice)
 		}
 
-		s += fmt.Sprintf("%s [%s] %s\n", cursor, checked, choice)
+		if scr.cursor == i {
+			nextLine = "\r>" + nextLine
+			s += core.HighlightedStyle.Render(nextLine)
+		} else {
+			nextLine = "\r " + nextLine
+			if scr.selected == i {
+				s += core.SelectedStyle.Render(nextLine)
+			} else {
+				s += nextLine
+			}
+		}
+
+		s += "\n"
 	}
 
-	s += "\nPress space to select.\n"
-	s += "Press enter to continue.\n"
-	s += "Press q to quit.\n"
+	s += fmt.Sprintf("\n%v\n", core.PressTo("space", "select"))
+	s += fmt.Sprintf("\r%v\n", core.PressTo("enter", "continue"))
+	s += fmt.Sprintf("\r%v\n", core.PressTo("q", "quit"))
 
 	return s
 }

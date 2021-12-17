@@ -26,15 +26,14 @@ func (scr *screen_prodconfirm) View() string {
 	s := fmt.Sprintf("\nYou chose '%v'. Is that what you would like to order?\n\n", scr.product)
 
 	for i, choice := range scr.choices {
-		cursor := " "
 		if scr.cursor == i {
-			cursor = ">"
+			s += core.HighlightedStyle.Render(fmt.Sprintf("\r> %s\n", choice))
+		} else {
+			s += fmt.Sprintf("\r  %s\n", choice)
 		}
-
-		s += fmt.Sprintf("%s %s\n", cursor, choice)
 	}
 
-	s += "\nPress q to quit.\n"
+	s += fmt.Sprintf("\n%v\n", core.PressTo("q", "quit"))
 
 	return s
 }

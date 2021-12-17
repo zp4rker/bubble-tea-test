@@ -32,15 +32,14 @@ func (scr *screen_appselect) View() string {
 	s := "\nChoose an app:\n\n"
 
 	for i, app := range scr.choices {
-		cursor := " "
 		if scr.cursor == i {
-			cursor = ">"
+			s += core.HighlightedStyle.Render(fmt.Sprintf("\r> %s\n", app))
+		} else {
+			s += fmt.Sprintf("\r  %s\n", app)
 		}
-
-		s += fmt.Sprintf("%s %s\n", cursor, app)
 	}
 
-	s += "\nPress q to quit.\n"
+	s += fmt.Sprintf("\n%v\n", core.PressTo("q", "quit"))
 
 	return s
 }
