@@ -6,11 +6,11 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/mainmodel"
-	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/screens"
+	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/screens/appselect"
 )
 
 func main() {
-	mainmodel.MainModel.LoadScreen(screens.ProdChoose())
+	mainmodel.MainModel.LoadScreen(appselect.AppSelect())
 
 	p := tea.NewProgram(mainmodel.MainModel, tea.WithAltScreen())
 	if err := p.Start(); err != nil {
