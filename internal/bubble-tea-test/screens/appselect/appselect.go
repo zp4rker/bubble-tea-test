@@ -70,3 +70,7 @@ func (scr *screen_appselect) Update(msg tea.Msg) tea.Cmd {
 
 	return nil
 }
+
+func (scr *screen_appselect) Cleanup() {
+	scr.cursor = 0
+}

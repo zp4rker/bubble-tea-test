@@ -6,13 +6,28 @@ import (
 )
 
 type Model struct {
+	mainScreen    core.Screen
 	currentScreen core.Screen
 }
 
 var MainModel = Model{}
 
 func (m *Model) LoadScreen(screen core.Screen) {
+	if m.currentScreen != nil {
+		defer func(screen core.Screen) {
+			screen.Cleanup()
+		}(m.currentScreen)
+	}
+
 	m.currentScreen = screen
+
+	if m.mainScreen == nil {
+		m.mainScreen = screen
+	}
+}
+
+func (m *Model) LoadMainScreen() {
+	m.currentScreen = m.mainScreen
 }
 
 func (m Model) Init() tea.Cmd {

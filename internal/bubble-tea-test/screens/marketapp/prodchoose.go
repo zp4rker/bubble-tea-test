@@ -51,7 +51,7 @@ func (scr *screen_prodchoose) Update(msg tea.Msg) tea.Cmd {
 		switch msg.String() {
 
 		case "ctrl+c", "q":
-			return tea.Quit
+			mainmodel.MainModel.LoadMainScreen()
 
 		case "up":
 			if scr.cursor > 0 {
@@ -76,4 +76,9 @@ func (scr *screen_prodchoose) Update(msg tea.Msg) tea.Cmd {
 	}
 
 	return nil
+}
+
+func (scr *screen_prodchoose) Cleanup() {
+	scr.cursor = 0
+	scr.selected = -1
 }

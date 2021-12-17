@@ -5,6 +5,7 @@ import (
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/core"
+	"github.com/zp4rker/bubble-tea-test/internal/bubble-tea-test/mainmodel"
 )
 
 type screen_comingsoon struct {
@@ -28,8 +29,12 @@ func (scr *screen_comingsoon) View() string {
 func (scr *screen_comingsoon) Update(msg tea.Msg) tea.Cmd {
 	switch msg.(type) {
 	case tea.KeyMsg:
-		return tea.Quit
+		mainmodel.MainModel.LoadMainScreen()
 	}
 
 	return nil
+}
+
+func (scr *screen_comingsoon) Cleanup() {
+	// Nothing to cleanup
 }
